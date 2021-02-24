@@ -11,21 +11,25 @@ u0=4*pi*1e-7; % Permeability of free space
 I0=4; % Coil current in Amps
 a=.4; % Coil radius in m
 
-x_p1=0; y_p1=0; z_p1=0; % Define coordinates of coil 1 center point
-x_p2=0; y_p2=0; z_p2=a; % Define coordinates of coil 2 center point
+x_p1=0; y_p1=0; z_p1=-a/2; % Define coordinates of coil 1 center point
+x_p2=0; y_p2=0; z_p2=a/2; % Define coordinates of coil 2 center point
 
-%% Plot the helmholtz coils
+%% Plot 3D helmholtz coils
 
-[xx1,yy1,zz1] = plot_helmholtz_coils(a,x_p1,y_p1,z_p1); % Calculate coordinates of coil 1
-[xx2,yy2,zz2] = plot_helmholtz_coils(a,x_p2,y_p2,z_p2); % Calculate coordinates of coil 2
+[x1,y1,z1] = plot_helmholtz_coils(a,x_p1,y_p1,z_p1); % Calculate coordinates of coil 1
+[x2,y2,z2] = plot_helmholtz_coils(a,x_p2,y_p2,z_p2); % Calculate coordinates of coil 2
 
 f1 = figure;
-plot3(y_p1, z_p1, x_p1, 'r.', 'LineWidth', 2, 'MarkerSize', 10); % Plot the center point of coil 1
+% plot3(y_p1, z_p1, x_p1, 'r.', 'LineWidth', 2, 'MarkerSize', 10); % Plot the center point of coil 1
+% hold on
+% plot3(y_p2, z_p2, x_p2, 'r.', 'LineWidth', 2, 'MarkerSize', 10); % Plot the center point of coil 2
+plot3(y1, z1, x1, 'k-', 'LineWidth', 2); % Plot coil 1
 hold on
-plot3(y_p2, z_p2, x_p2, 'r.', 'LineWidth', 2, 'MarkerSize', 10); % Plot the center point of coil 2
-plot3(yy1, zz1, xx1, 'b-', 'LineWidth', 2); % Plot coil 1
-plot3(yy2, zz2, xx2, 'b-', 'LineWidth', 2); % Plot coil 2
-grid on
+plot3(y2, z2, x2, 'k-', 'LineWidth', 2); % Plot coil 2 on x direction
+plot3(x1, y1, z1, 'k--', 'LineWidth', 1);
+plot3(x2, y2, z2, 'k--', 'LineWidth', 1);
+plot3(z1, x1, y1, 'k--', 'LineWidth', 1);
+plot3(z2, x2, y2, 'k--', 'LineWidth', 1);grid on
 axis('square');
 xlabel('y', 'FontSize', 20);
 ylabel('z', 'FontSize', 20);
@@ -36,7 +40,7 @@ zlabel('x', 'FontSize', 20);
 % Input mesh of points in 2D plane
 x=0;
 % This is a 2d plane over the x=0 plane that extends away from the coils in the yz plane. 
-[y,z]=meshgrid(linspace(-a/2,a/2,25),linspace(0,a,25)); 
+[y,z]=meshgrid(linspace(-a/2,a/2,25),linspace(-a/2,a/2,25)); 
 
 [Bx1,By1,Bz1] = magnetic_field_current_loop(x,y,z,x_p1,y_p1,z_p1,a,I0); % Calculate field from first coil
 [Bx2,By2,Bz2] = magnetic_field_current_loop(x,y,z,x_p2,y_p2,z_p2,a,I0); % Calculate field from second coil
