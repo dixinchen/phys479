@@ -26,14 +26,14 @@ f1 = figure;
 plot3(x1, y1, z1, 'k-', 'LineWidth', 2); % Plot coil 1
 hold on
 plot3(x2, y2, z2, 'k-', 'LineWidth', 2); % Plot coil 2 on x direction
-% plot3(x1, y1, z1, 'k--', 'LineWidth', 1);
-% plot3(x2, y2, z2, 'k--', 'LineWidth', 1);
-% plot3(z1, x1, y1, 'k--', 'LineWidth', 1);
-% plot3(z2, x2, y2, 'k--', 'LineWidth', 1);grid on
+plot3(x1, y1, z1, 'k--', 'LineWidth', 1);
+plot3(x2, y2, z2, 'k--', 'LineWidth', 1);
+plot3(z1, x1, y1, 'k--', 'LineWidth', 1);
+plot3(z2, x2, y2, 'k--', 'LineWidth', 1);grid on
 axis('square');
-xlabel('x', 'FontSize', 20);
-ylabel('y', 'FontSize', 20);
-zlabel('z', 'FontSize', 20);
+xlabel('y', 'FontSize', 20);
+ylabel('z', 'FontSize', 20);
+zlabel('x', 'FontSize', 20);
 
 %% Calculate magnetic field
 
