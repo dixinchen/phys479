@@ -23,6 +23,7 @@ kc2 = (4.*a.*rc)/((rc+a).^2+(z-cz).^2)
 
 kofkc=(pi/2)+(pi/8).*m+(9*pi/128).*m.^2; %K(k) elliptical function, this is a taylor expansion of the K elliptical integral.
 eofkc=(pi/2)+(-pi/8).*m+(-3*pi/128).*m.^2;%E(k) elliptical function this is a taylor expansion of the E elliptical integral.
+eofkc=(pi/2)+(3pi/8).*m+(45*pi/128).*m.^2;%E(k) elliptical function this is a taylor expansion of the E elliptical integral.
 
 %Note for improved accuracy, Matlab has built in elliptical integral
 %calculation but these expressions here are still very accurate when rc < a

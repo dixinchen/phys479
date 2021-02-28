@@ -20,10 +20,6 @@ n = 10; % number of grids
 
 % Calculate spherical coord. for each point in the subspace
 % for i=1:n
-%     rho(i) = norm(cross(v1-v2,[xi(i),yi(i),zi(i)]-v2)) / norm(v1-v2);
-%     cosTheta1(i)=(z1);
-% end
-% for i=1:n
 %     for j=1:n
 %         for k=1:n
 %             rho = norm(cross(v1-v2,[xi(i,j,k),yi(i,j,k),zi(i,j,k)]-v2)) / norm(v1-v2);
@@ -37,29 +33,41 @@ n = 10; % number of grids
 %     end
 % end
 
-c = mu0*current/(4*pi);
-xA = v1(1);
-yA = v1(2);
-zA = v1(3);
-xB = v2(1);
-yB = v2(2);
-zB = v2(3);
-b = zeros(n,n,n);
 for i=1:n
     for j=1:n
         for k=1:n
             x = xi(i,j,k);
             y = yi(i,j,k);
             z = zi(i,j,k);
-            r1 = ((x-xA)^2+(y-yA)^2+(z-zA)^2)^0.5;
-            r2 = ((x-xB)^2+(y-yB)^2+(z-zB)^2)^0.5;
-            cosTheta1 = (r2^2-r1^2-length^2)/(2*length*r1);
-            cosTheta2 = (r2^2-r1^2-length^2)/(2*length*r2);
-            distance = ((2*r1^2*r2^2+2*r1^2*length^2+2*r2^2*length^2-r1^4-r2^4-length^4)^0.5)/(2*length);
-            b(i,j,k) = c*(cosTheta2-cosTheta1)/distance;
+            ah = ((x-length/2)^2+(z-d)^2)^0.5;
         end
     end
 end
+
+
+% c = mu0*current/(4*pi);
+% xA = v1(1);
+% yA = v1(2);
+% zA = v1(3);
+% xB = v2(1);
+% yB = v2(2);
+% zB = v2(3);
+% b = zeros(n,n,n);
+% for i=1:n
+%     for j=1:n
+%         for k=1:n
+%             x = xi(i,j,k);
+%             y = yi(i,j,k);
+%             z = zi(i,j,k);
+%             r1 = ((x-xA)^2+(y-yA)^2+(z-zA)^2)^0.5;
+%             r2 = ((x-xB)^2+(y-yB)^2+(z-zB)^2)^0.5;
+%             cosTheta1 = (r2^2-r1^2-length^2)/(2*length*r1);
+%             cosTheta2 = (r2^2-r1^2-length^2)/(2*length*r2);
+%             distance = ((2*r1^2*r2^2+2*r1^2*length^2+2*r2^2*length^2-r1^4-r2^4-length^4)^0.5)/(2*length);
+%             b(i,j,k) = c*(cosTheta2-cosTheta1)/distance;
+%         end
+%     end
+% end
 
 
 % quiver3(xi,yi,zi,bx,by,bz,2)
